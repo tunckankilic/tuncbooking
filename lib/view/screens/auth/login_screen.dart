@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tuncbooking/core/core.dart';
 import 'package:tuncbooking/core/styles.dart';
-import 'package:tuncbooking/view/screens/auth/signUp_screen.dart';
+import 'package:tuncbooking/view/screens/auth/sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  static Route route() => MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
-      );
   static const String routeName = "/login";
   const LoginScreen({super.key});
 
@@ -89,14 +86,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           backgroundColor: Colors.red[900],
                           padding: const EdgeInsets.symmetric(horizontal: 60),
                         ),
-                        child: Text(
-                          Texts.login,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 22.0,
-                            color: Colors.white,
-                          ),
-                        ),
+                        child: Text(Texts.login,
+                            style: Styles.whiteTextStyle(size: 22)),
                       ),
                     ),
                     TextButton(
@@ -105,11 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: Text(
                         Texts.signUpRouter,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Styles.whiteTextStyle(size: 16),
                       ),
                     ),
                     const SizedBox(

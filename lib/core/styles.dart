@@ -22,4 +22,12 @@ class Styles {
       ),
     );
   }
+
+  static TextStyle whiteTextStyle({required double size}) {
+    return TextStyle(
+      color: Colors.white,
+      fontSize: size,
+      fontWeight: FontWeight.bold,
+    );
+  }
 }

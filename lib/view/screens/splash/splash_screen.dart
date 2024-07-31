@@ -5,9 +5,6 @@ import 'package:tuncbooking/core/core.dart';
 import 'package:tuncbooking/view/screens/screens.dart';
 
 class SplashScreen extends StatefulWidget {
-  static Route route() => MaterialPageRoute(
-        builder: (context) => const SplashScreen(),
-      );
   static const String routeName = "/";
   const SplashScreen({super.key});
 

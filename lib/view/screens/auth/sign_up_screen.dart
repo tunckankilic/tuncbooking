@@ -2,12 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:tuncbooking/core/core.dart';
-import 'package:tuncbooking/core/texts.dart';
 
 class SignUpScreen extends StatefulWidget {
-  static Route route() => MaterialPageRoute(
-        builder: (context) => const SignUpScreen(),
-      );
   static const String routeName = "/signUp";
   const SignUpScreen({super.key});
 
