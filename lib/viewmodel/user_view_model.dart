@@ -41,7 +41,7 @@ class UserViewModel {
           await addImageToFirebaseStorage(imageFileOfUser, currentUserID);
         });
 
-        Get.to(GuestHomeScreen());
+        Get.to(const GuestHomeScreen());
         Get.snackbar("Congratulations", "your account has been created.");
       });
     } catch (e) {
@@ -98,7 +98,7 @@ class UserViewModel {
         await AppConstants.currentUser.getMyPostingsFromFirestore();
 
         Get.snackbar("Logged-In", "you are logged-in successful.");
-        Get.to(GuestHomeScreen());
+        Get.to(const GuestHomeScreen());
       });
     } catch (e) {
       Get.snackbar("Error", e.toString());

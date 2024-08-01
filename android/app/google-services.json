@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1043896405679",
+    "project_id": "tuncbooking-43a09",
+    "storage_bucket": "tuncbooking-43a09.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1043896405679:android:e5562c0075f4037d1e0e5a",
+        "android_client_info": {
+          "package_name": "site.tunckankilic.tuncbooking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1043896405679-go94q18gcvpli21ubga9p7eve9anth9d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUMSZuwkIJYCSx70QXr65N30KnoSABOqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1043896405679-go94q18gcvpli21ubga9p7eve9anth9d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

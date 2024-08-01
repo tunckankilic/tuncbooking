@@ -18,7 +18,7 @@ class ContactModel {
   });
 
   String getFullNameOfUser() {
-    return fullName = firstName! + " " + lastName!;
+    return fullName = "${firstName!} ${lastName!}";
   }
 
   UserModel createUserFromContact() {

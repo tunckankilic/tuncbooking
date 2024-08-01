@@ -4,7 +4,6 @@ import 'package:tuncbooking/view/widgets/posting_grid_tile_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tuncbooking/core/app_constants.dart';
-import 'package:tuncbooking/model/posting_model.dart';
 
 class SavedListingsScreen extends StatefulWidget {
   static String routeName = "/savedListings";

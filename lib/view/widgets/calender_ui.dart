@@ -28,7 +28,7 @@ class _CalenderUIState extends State<CalenderUI> {
   _setUpMonthTiles() {
     _monthTiles = [];
 
-    int daysInMonth = AppConstants.daysInMonths![_currentMonthInt]!;
+    int daysInMonth = AppConstants.daysInMonths[_currentMonthInt]!;
 
     DateTime firstDayOfMonth = DateTime(_currentYearInt!, _currentMonthInt!, 1);
 
@@ -62,11 +62,8 @@ class _CalenderUIState extends State<CalenderUI> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
     _currentMonthInt = (DateTime.now().month + widget.monthIndex!) % 12;
-
     if (_currentMonthInt == 0) {
       _currentMonthInt = 12;
     }
@@ -91,7 +88,7 @@ class _CalenderUIState extends State<CalenderUI> {
         Padding(
           padding: const EdgeInsets.only(bottom: 20.0),
           child: Text(
-            "${AppConstants.monthDict[_currentMonthInt]} - ${_currentYearInt}",
+            "${AppConstants.monthDict[_currentMonthInt]} - $_currentYearInt",
           ),
         ),
         GridView.builder(

@@ -5,7 +5,6 @@ import 'package:tuncbooking/model/conversation_model.dart';
 import 'package:tuncbooking/model/posting_model.dart';
 import 'package:tuncbooking/model/review_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserModel extends ContactModel {
@@ -25,19 +24,15 @@ class UserModel extends ContactModel {
   List<PostingModel>? myPostings;
 
   UserModel({
-    String id = "",
-    String firstName = "",
-    String lastName = "",
-    MemoryImage? displayImage,
+    String super.id,
+    String super.firstName,
+    String super.lastName,
+    super.displayImage,
     this.email = "",
     this.bio = "",
     this.city = "",
     this.country = "",
-  }) : super(
-            id: id,
-            firstName: firstName,
-            lastName: lastName,
-            displayImage: displayImage) {
+  }) {
     isHost = false;
     isCurrentlyHosting = false;
 
@@ -62,9 +57,9 @@ class UserModel extends ContactModel {
 
     List<String> myPostingIDsList = [];
 
-    myPostings!.forEach((element) {
+    for (var element in myPostings!) {
       myPostingIDsList.add(element.id!);
-    });
+    }
 
     await FirebaseFirestore.instance.collection("users").doc(id).update({
       'myPostingIDs': myPostingIDsList,
@@ -72,8 +67,7 @@ class UserModel extends ContactModel {
   }
 
   getMyPostingsFromFirestore() async {
-    List<String> myPostingIDs =
-        List<String>.from(snapshot!["myPostingIDs"]) ?? [];
+    List<String> myPostingIDs = List<String>.from(snapshot!["myPostingIDs"]);
 
     for (String postingID in myPostingIDs) {
       PostingModel posting = PostingModel(id: postingID);
@@ -96,9 +90,9 @@ class UserModel extends ContactModel {
 
     List<String> savedPostingIDs = [];
 
-    savedPostings!.forEach((savedPosting) {
+    for (var savedPosting in savedPostings!) {
       savedPostingIDs.add(savedPosting.id!);
-    });
+    }
 
     await FirebaseFirestore.instance.collection("users").doc(id).update({
       'savedPostingIDs': savedPostingIDs,
@@ -117,9 +111,9 @@ class UserModel extends ContactModel {
 
     List<String> savedPostingIDs = [];
 
-    savedPostings!.forEach((savedPosting) {
+    for (var savedPosting in savedPostings!) {
       savedPostingIDs.add(savedPosting.id!);
-    });
+    }
 
     await FirebaseFirestore.instance.collection("users").doc(id).update({
       'savedPostingIDs': savedPostingIDs,
@@ -135,7 +129,7 @@ class UserModel extends ContactModel {
       'postingID': booking.posting!.id!,
     };
     await FirebaseFirestore.instance
-        .doc('users/${id}/bookings/${booking.id}')
+        .doc('users/$id/bookings/${booking.id}')
         .set(data);
 
     String earningsOld = "";
@@ -160,7 +154,7 @@ class UserModel extends ContactModel {
     conversation.addConversationToFirestore(booking.posting!.host!);
 
     String textMessage =
-        "Hi my name is ${AppConstants.currentUser!.firstName} and I have "
+        "Hi my name is ${AppConstants.currentUser.firstName} and I have "
         "just booked ${booking.posting!.name} from ${booking.dates!.first} to "
         "${booking.dates!.last} if you have any questions contact me. Enjoy your "
         "stay!";
@@ -171,11 +165,11 @@ class UserModel extends ContactModel {
   List<DateTime> getAllBookedDates() {
     List<DateTime> allBookedDates = [];
 
-    myPostings!.forEach((posting) {
-      posting.bookings!.forEach((booking) {
+    for (var posting in myPostings!) {
+      for (var booking in posting.bookings!) {
         allBookedDates.addAll(booking.dates!);
-      });
-    });
+      }
+    }
 
     return allBookedDates;
   }

@@ -41,9 +41,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
     conversation = widget.conversation;
   }
 

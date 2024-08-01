@@ -8,7 +8,7 @@ import 'package:tuncbooking/view/screens/guest_home/guest_home_screen.dart';
 import 'package:tuncbooking/view/screens/host_home/host_home_screen.dart';
 
 class AccountScreen extends StatefulWidget {
-    static String routeName = "/account";
+  static String routeName = "/account";
 
   const AccountScreen({super.key});
 
@@ -41,9 +41,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
     if (AppConstants.currentUser.isHost!) {
       if (AppConstants.currentUser.isCurrentlyHosting!) {
         _hostingTitle = 'Show my Guest Dashboard';

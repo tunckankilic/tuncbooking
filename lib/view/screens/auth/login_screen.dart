@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:tuncbooking/core/core.dart';
-import 'package:tuncbooking/core/styles.dart';
+import 'package:tuncbooking/global.dart';
 import 'package:tuncbooking/view/screens/auth/sign_up_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = "/login";
@@ -12,11 +12,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   final _formKey = GlobalKey<FormState>();
   TextEditingController _emailTextEditingController = TextEditingController();
   TextEditingController _passwordTextEditingController =
@@ -26,15 +21,26 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: Styles.splashGradient(),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.pinkAccent,
+              Colors.amber,
+            ],
+            begin: FractionalOffset(0, 0),
+            end: FractionalOffset(1, 0),
+            stops: [0, 1],
+            tileMode: TileMode.clamp,
+          ),
+        ),
         child: ListView(
           children: [
-            Image.asset(Assets.logo),
-            Text(
-              Texts.hello,
+            Image.asset("images/logo.png"),
+            const Text(
+              "hello friend,\nwelcome back",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.red[900]!,
+                color: Colors.pink,
                 fontSize: 30.0,
                 letterSpacing: 3,
               ),
@@ -49,14 +55,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 26.0),
                       child: TextFormField(
-                        decoration: InputDecoration(labelText: Texts.email),
+                        decoration: const InputDecoration(labelText: "Email"),
                         style: const TextStyle(
                           fontSize: 24,
                         ),
                         controller: _emailTextEditingController,
                         validator: (valueEmail) {
                           if (!valueEmail!.contains("@")) {
-                            return Texts.emailWarn;
+                            return "Please write valid email.";
                           }
                           return null;
                         },
@@ -65,14 +71,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 21.0),
                       child: TextFormField(
-                        decoration: InputDecoration(labelText: Texts.password),
+                        decoration:
+                            const InputDecoration(labelText: "Password"),
                         style: const TextStyle(
                           fontSize: 24,
                         ),
                         controller: _passwordTextEditingController,
+                        obscureText: true,
                         validator: (valuePassword) {
                           if (valuePassword!.length < 5) {
-                            return Texts.passwordWarn;
+                            return "Password must be at least 6 or more characters.";
                           }
                           return null;
                         },
@@ -81,22 +89,39 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 26.0),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            await userViewModel.login(
+                              _emailTextEditingController.text.trim(),
+                              _passwordTextEditingController.text.trim(),
+                            );
+                          }
+                        },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red[900],
+                          backgroundColor: Colors.pink,
                           padding: const EdgeInsets.symmetric(horizontal: 60),
                         ),
-                        child: Text(Texts.login,
-                            style: Styles.whiteTextStyle(size: 22)),
+                        child: const Text(
+                          "Login",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22.0,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, SignUpScreen.routeName);
+                        Get.to(SignUpScreen());
                       },
-                      child: Text(
-                        Texts.signUpRouter,
-                        style: Styles.whiteTextStyle(size: 16),
+                      child: const Text(
+                        "Don't have an account? Create here",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     const SizedBox(

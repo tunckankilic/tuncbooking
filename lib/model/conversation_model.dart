@@ -45,7 +45,7 @@ class ConversationModel {
       'text': messageText
     };
     await FirebaseFirestore.instance
-        .collection('conversations/${id}/messages')
+        .collection('conversations/$id/messages')
         .add(messageData);
 
     Map<String, dynamic> conversationData = {
@@ -53,7 +53,7 @@ class ConversationModel {
       'lastMessageText': messageText
     };
     await FirebaseFirestore.instance
-        .doc('conversations/${id}')
+        .doc('conversations/$id')
         .update(conversationData);
   }
 
@@ -69,8 +69,8 @@ class ConversationModel {
     lastMessage!.dateTime = lastMessageDateTime;
     lastMessage!.text = lastMessageText;
 
-    List<String> userIDs = List<String>.from(snapshot['userIDs']) ?? [];
-    List<String> userNames = List<String>.from(snapshot['userNames']) ?? [];
+    List<String> userIDs = List<String>.from(snapshot['userIDs']);
+    List<String> userNames = List<String>.from(snapshot['userNames']);
     otherContact = ContactModel();
 
     for (String userID in userIDs) {

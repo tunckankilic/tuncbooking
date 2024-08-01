@@ -13,12 +13,12 @@ class BookingModel {
   getBookingInfoFromFirestoreFromPosting(
       PostingModel posting, DocumentSnapshot snapshot) async {
     posting = posting;
-    List<Timestamp> timestamps = List<Timestamp>.from(snapshot['dates']) ?? [];
+    List<Timestamp> timestamps = List<Timestamp>.from(snapshot['dates']);
 
     dates = [];
-    timestamps.forEach((timestamp) {
+    for (var timestamp in timestamps) {
       dates!.add((timestamp.toDate()));
-    });
+    }
 
     String contactID = snapshot['userID'] ?? "";
     String fullName = snapshot['name'] ?? "";

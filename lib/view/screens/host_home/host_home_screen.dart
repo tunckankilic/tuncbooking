@@ -51,7 +51,6 @@ class _HostHomeScreenState extends State<HostHomeScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     selectedIndex = widget.index ?? 3;

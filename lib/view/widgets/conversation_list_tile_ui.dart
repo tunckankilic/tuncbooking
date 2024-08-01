@@ -24,11 +24,8 @@ class _ConversationListTileUIState extends State<ConversationListTileUI> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
     conversation = widget.conversation;
-
     getImageOfOtherContact();
   }
 

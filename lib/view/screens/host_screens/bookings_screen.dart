@@ -40,9 +40,7 @@ class _BookingsScreenState extends State<BookingsScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
     _bookedDates = AppConstants.currentUser.getAllBookedDates();
     _allBookedDates = AppConstants.currentUser.getAllBookedDates();
   }

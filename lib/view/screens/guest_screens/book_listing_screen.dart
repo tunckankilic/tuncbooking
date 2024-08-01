@@ -1,10 +1,8 @@
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:tuncbooking/global.dart';
 import 'package:tuncbooking/model/posting_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tuncbooking/view/screens/guest_home/guest_home_screen.dart';
 import '../../widgets/calender_ui.dart';
 
 class BookListingScreen extends StatefulWidget {
@@ -88,12 +86,13 @@ class _BookListingScreenState extends State<BookListingScreen> {
       bookingPrice = totalPriceForAllNights;
     });
 
-    print("price = " + bookingPrice.toString());
+    if (kDebugMode) {
+      print("price = $bookingPrice");
+    }
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     posting = widget.posting;

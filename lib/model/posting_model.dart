@@ -57,7 +57,7 @@ class PostingModel {
     imageNames = [];
 
     for (int i = 0; i < displayImages!.length; i++) {
-      imageNames!.add("image${i}.png");
+      imageNames!.add("image$i.png");
     }
   }
 
@@ -70,9 +70,9 @@ class PostingModel {
 
   getPostingInfoFromSnapshot(DocumentSnapshot snapshot) {
     address = snapshot['address'] ?? "";
-    amenities = List<String>.from(snapshot['amenities']) ?? [];
-    bathrooms = Map<String, int>.from(snapshot['bathrooms']) ?? {};
-    beds = Map<String, int>.from(snapshot['beds']) ?? {};
+    amenities = List<String>.from(snapshot['amenities']);
+    bathrooms = Map<String, int>.from(snapshot['bathrooms']);
+    beds = Map<String, int>.from(snapshot['beds']);
     city = snapshot['city'] ?? "";
     country = snapshot['country'] ?? "";
     description = snapshot['description'] ?? "";
@@ -80,7 +80,7 @@ class PostingModel {
     String hostID = snapshot['hostID'] ?? "";
     host = ContactModel(id: hostID);
 
-    imageNames = List<String>.from(snapshot['imageNames']) ?? [];
+    imageNames = List<String>.from(snapshot['imageNames']);
     name = snapshot['name'] ?? "";
     price = snapshot['price'].toDouble() ?? 0.0;
     rating = snapshot['rating'].toDouble() ?? 2.5;
@@ -132,15 +132,15 @@ class PostingModel {
   }
 
   double getCurrentRating() {
-    if (reviews!.length == 0) {
+    if (reviews!.isEmpty) {
       return 4;
     }
 
     double rating = 0;
 
-    reviews!.forEach((review) {
+    for (var review in reviews!) {
       rating += review.rating!;
-    });
+    }
 
     rating /= reviews!.length;
 
@@ -166,15 +166,15 @@ class PostingModel {
     String text = "";
 
     if (beds!["small"] != 0) {
-      text = text + beds!["small"].toString() + " single/twin ";
+      text = "$text${beds!["small"]} single/twin ";
     }
 
     if (beds!["medium"] != 0) {
-      text = text + beds!["medium"].toString() + " double ";
+      text = "$text${beds!["medium"]} double ";
     }
 
     if (beds!["large"] != 0) {
-      text = text + this.beds!["large"].toString() + " queen/king ";
+      text = "$text${beds!["large"]} queen/king ";
     }
 
     return text;
@@ -184,18 +184,18 @@ class PostingModel {
     String text = "";
 
     if (bathrooms!["full"] != 0) {
-      text = text + bathrooms!["full"].toString() + " full ";
+      text = "$text${bathrooms!["full"]} full ";
     }
 
     if (bathrooms!["half"] != 0) {
-      text = text + bathrooms!["half"].toString() + " half ";
+      text = "$text${bathrooms!["half"]} half ";
     }
 
     return text;
   }
 
   String getFullAddress() {
-    return address! + ", " + city! + ", " + country!;
+    return "${address!}, ${city!}, ${country!}";
   }
 
   getAllBookingsFromFirestore() async {
@@ -219,9 +219,9 @@ class PostingModel {
   List<DateTime> getAllBookedDates() {
     List<DateTime> dates = [];
 
-    bookings!.forEach((booking) {
+    for (var booking in bookings!) {
       dates.addAll(booking.dates!);
-    });
+    }
 
     return dates;
   }

@@ -18,7 +18,6 @@ class _PostingListTileUIState extends State<PostingListTileUI> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     posting = widget.posting;
